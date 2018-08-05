@@ -13,7 +13,18 @@ defmodule App.Supervisor do
     children = config_exs
       |> Code.eval_file()
       |> elem(0)
-
+      |> Enum.map(fn child ->
+        case child do
+          {module, {module, :start_link, [{{previous_module, demand}, params}]}, x1, x2, x3, x4} ->
+            previous_module = Helpers.App.gen_module_atom(name, previous_module)
+            params = params |> Map.put(:atom_module, Helpers.App.gen_module_atom(name, module))
+            {module, {module, :start_link, [{{previous_module, demand}, params}]}, x1, x2, x3, x4}
+          {module, {module, :start_link, [params]}, x1, x2, x3, x4} ->
+            params = params |> Map.put(:atom_module, Helpers.App.gen_module_atom(name, module))
+            {module, {module, :start_link, [params]}, x1, x2, x3, x4}
+        end
+      end)
+      
     opts = [strategy: :one_for_one]
     Supervisor.start_link(children, opts)
     {:ok, name}
