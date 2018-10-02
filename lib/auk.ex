@@ -15,7 +15,8 @@ defmodule Auk do
 
     children = [
       supervisor(Registry, [:unique, GlobalRegistry]),
-      worker(App.Registry, [])
+      worker(App.Registry, []),
+      worker(MailboxAggregator, [])
       ] ++ children
     opts = [strategy: :one_for_one, name: __MODULE__]
     
