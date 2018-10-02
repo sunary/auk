@@ -17,7 +17,7 @@ defmodule Auk.MixProject do
       mod: {Auk, [
         ["lib/assemblies/demo_pipeline/app_config.exs"]
       ]},
-      applications: [],
+      applications: [:libcluster, :swarm],
       extra_applications: [:logger]
     ]
   end
@@ -25,7 +25,9 @@ defmodule Auk.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:gen_stage, "~> 0.14"}
+      {:gen_stage, "~> 0.14"},
+      {:libcluster, "~> 2.5.0"},
+      {:swarm, "~> 2.0.2"}
     ]
   end
 end
