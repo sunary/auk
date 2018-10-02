@@ -14,7 +14,7 @@ defmodule A do
       # emit the items 3 and 4, and set the state to 5.
       events = Enum.to_list(state.counter..state.counter+demand-1)
 
-      # IO.inspect(events, label: "AA")
+      # IO.inspect(events, label: Atom.to_string(state.atom_module))
       {:noreply, events, %{state | counter: state.counter + demand}}
     end
 end
