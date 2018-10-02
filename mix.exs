@@ -17,7 +17,7 @@ defmodule Auk.MixProject do
       mod: {Auk, [
         ["lib/assemblies/demo_pipeline/app_config.exs"]
       ]},
-      applications: [:libcluster, :swarm, :pobox],
+      applications: [:libcluster, :swarm, :pobox, :kafka_ex],
       extra_applications: [:logger]
     ]
   end
@@ -28,7 +28,8 @@ defmodule Auk.MixProject do
       {:gen_stage, "~> 0.14"},
       {:libcluster, "~> 2.5.0"},
       {:swarm, "~> 2.0.2"},
-      {:pobox, "1.1.0"}
+      {:pobox, "1.1.0"},
+      {:kafka_ex, "~> 0.8.3"}
     ]
   end
 end
