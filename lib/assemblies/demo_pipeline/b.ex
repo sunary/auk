@@ -1,4 +1,4 @@
-defmodule BB do
+defmodule B do
   use GenStage
 
   def start_link({subscription, state}) do 
