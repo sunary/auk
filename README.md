@@ -28,5 +28,7 @@ $ mix deps.get
 ## Run
 
 ```sh
-$ iex -S mix
+$ MIX_ENV=dev iex --name a@127.0.0.1 -S mix
+$ MIX_ENV=dev iex --name b@127.0.0.1 -S mix
+$ MIX_ENV=dev iex --name c@127.0.0.1 -S mix
 ```
