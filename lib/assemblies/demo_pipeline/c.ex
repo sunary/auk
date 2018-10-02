@@ -1,4 +1,4 @@
-defmodule CC do
+defmodule C do
   use GenStage
 
   def start_link({subscription, state}) do

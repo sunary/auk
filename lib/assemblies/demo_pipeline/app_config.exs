@@ -1,16 +1,16 @@
 import Supervisor.Spec, warn: false
 
 [
-  worker(AA,
+  worker(A,
         [%{
           counter: 0
         }]),
-  worker(BB,
-        [{{AA, min_demand: 1, max_demand: 10},
+  worker(B,
+        [{{A, min_demand: 1, max_demand: 10},
           %{
             number: 2
           }}]),
-  worker(CC,
-        [{{BB, min_demand: 1, max_demand: 10},
+  worker(C,
+        [{{B, min_demand: 1, max_demand: 10},
           %{}}])
 ]

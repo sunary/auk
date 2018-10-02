@@ -1,4 +1,4 @@
-defmodule AA do
+defmodule A do
     use GenStage
 
     def start_link(state) do 
