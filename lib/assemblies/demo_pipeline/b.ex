@@ -18,6 +18,8 @@ defmodule B do
           entry <- event..event+state.number,
           do: entry
 
+    MailboxWrapper.send(MailboxAggregator, 
+      {&IO.inspect/1, "This message exposed from B at: #{DateTime.utc_now}"})
     # IO.inspect(events, label: Atom.to_string(state.atom_module))
     {:noreply, events, state}
   end
