@@ -11,6 +11,6 @@ import Supervisor.Spec, warn: false
             number: 2
           }}]),
   worker(C,
-        [{{BB, min_demand: 1, max_demand: 10},
+        [{{B, min_demand: 1, max_demand: 10},
           %{}}])
 ]

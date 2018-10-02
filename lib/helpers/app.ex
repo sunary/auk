@@ -4,10 +4,10 @@ defmodule Helpers.App do
   ## Example
   ```elixir
   iex> Helpers.App.gen_component_name("lib/assemblies/demo_pipeline/app_config.exs")
-  "demo_pipeline"
+  :demo_pipeline
 
   iex> Helpers.App.gen_module_atom(:B, :A)
-  :b_a
+  :B_A
   ```
   """
   def gen_component_name(config_file) do
