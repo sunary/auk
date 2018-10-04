@@ -6,6 +6,7 @@ defmodule A do
     end
   
     def init(state) do
+      App.Registry.monitor(self(), state.atom_module)
       {:producer, state}
     end
   
@@ -14,7 +15,22 @@ defmodule A do
       # emit the items 3 and 4, and set the state to 5.
       events = Enum.to_list(state.counter..state.counter+demand-1)
 
-      # IO.inspect(events, label: Atom.to_string(state.atom_module))
+      case :pg2.get_members(Auk.pg2_group()) do
+        {:error, {:no_such_group, _}} ->
+          nil
+        pids ->
+          for pid <- pids do
+            if pid != self() do
+              send(pid, {:pg2_msg, "Hello"})
+            end
+          end
+      end
+
       {:noreply, events, %{state | counter: state.counter + demand}}
+    end
+
+    def handle_info({:pg2_msg, message}, state) do
+      IO.inspect "[#{inspect state.atom_module}] got #{inspect message} from :pg2_group"
+      {:noreply, [], state}
     end
 end

@@ -13,7 +13,7 @@ defmodule C do
     # Wait for a second.
     :timer.sleep(1000)
 
-    IO.inspect(events, label: Atom.to_string(state.atom_module))
+    IO.inspect "[#{inspect state.atom_module}] #{events}"
     {:noreply, [], state}
   end
 end
