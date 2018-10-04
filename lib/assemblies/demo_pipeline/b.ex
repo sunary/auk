@@ -19,8 +19,8 @@ defmodule B do
           do: entry
 
     MailboxWrapper.send(MailboxAggregator, 
-      {&IO.inspect/1, "This message exposed from B at: #{DateTime.utc_now}"})
-    # IO.inspect(events, label: Atom.to_string(state.atom_module))
+      {&IO.inspect/1, "This message exposed from [#{inspect state.atom_module}] at: #{DateTime.utc_now}"})
+
     {:noreply, events, state}
   end
 end

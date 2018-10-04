@@ -28,7 +28,6 @@ defmodule App.Supervisor do
     opts = [strategy: :one_for_one]
     Supervisor.start_link(children, opts)
 
-    App.Registry.monitor(self(), name)
     {:ok, name}
   end
 
