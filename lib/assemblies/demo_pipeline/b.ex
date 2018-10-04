@@ -21,6 +21,6 @@ defmodule B do
     MailboxWrapper.send(MailboxAggregator, 
       {&IO.inspect/1, "This message exposed from [#{inspect state.atom_module}] at: #{DateTime.utc_now}"})
 
-      {:noreply, events, state}
+    {:noreply, events, state}
   end
 end
