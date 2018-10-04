@@ -42,6 +42,24 @@ defmodule App.Registry do
     end
   end
 
+  def handle_info({:DOWN, ref, :process, _pid, :normal}, state) do
+    {:noreply, Map.delete(state, ref)}
+  end
+
+  def handle_info({:DOWN, ref, :process, _pid, :shutdown}, state) do
+    {:noreply, Map.delete(state, ref)}
+  end
+
+  def handle_info({:DOWN, ref, :process, _pid, _reason}, state) do
+    case Map.get(state, ref) do
+      nil ->
+        {:noreply, state}
+      {name, config_exs} ->
+        {:ok, _pid} = start_via_swarm({name, config_exs}, "restarting")
+        {:noreply, Map.delete(state, ref)}
+    end
+  end
+
   def start_via_swarm({name, config_exs}, reason \\ "starting") do
     Logger.debug("[App.Registry] #{reason} via swarm: #{name}")
     Swarm.register_name(name, App.Supervisor, :register, [{name, config_exs}])
