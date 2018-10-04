@@ -15,7 +15,8 @@ defmodule Auk.MixProject do
   def application do
     [
       mod: {Auk, [
-        ["lib/assemblies/demo_pipeline/app_config.exs"]
+        ["lib/assemblies/demo_pipeline/app_config.exs"],
+        ["lib/assemblies/demo_pipeline2/app_config.exs"]
       ]},
       applications: [:libcluster, :swarm, :pobox, :kafka_ex],
       extra_applications: [:logger]
