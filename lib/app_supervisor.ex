@@ -25,7 +25,7 @@ defmodule App.Supervisor do
         end
       end)
 
-    opts = [strategy: :one_for_one]
+    opts = [strategy: :rest_for_one]
     Supervisor.start_link(children, opts)
 
     {:ok, name}
